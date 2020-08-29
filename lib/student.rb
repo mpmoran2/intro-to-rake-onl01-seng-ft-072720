@@ -25,6 +25,12 @@ class Student
     SQL
     DB[:conn].execute(sql) 
     
+    namespace :db do
+      desc 'migrate changes to your database'
+      task :migrate => :environment do
+        Student.create_table
+      end
+    end
   end
 
   def self.drop_table
